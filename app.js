@@ -50,4 +50,14 @@ app.use(`${v1}`, participantsRouter);
 app.use(notFoundMiddleware);
 app.use(handleErrorMiddleware);
 
+if (require.main === module) {
+  const http = require("http");
+  const port = process.env.PORT || 3000;
+
+  const server = http.createServer(app);
+  server.listen(port, () => {
+    console.log(`Server running on port ${port}`);
+  });
+}
+
 module.exports = app;
