@@ -10,7 +10,7 @@ const {
 } = require('../../errors');
 const { createTokenParticipant, createJWT } = require('../../utils');
 
-const { otpMail } = require('../mail');
+const { otpMail, invoiceMail } = require('../mail');
 
 const signupParticipant = async (req) => {
   const { firstName, lastName, email, password, role } = req.body;
@@ -176,6 +176,7 @@ const checkoutOrder = async (req) => {
     category: checkingEvent.category,
     talent: checkingEvent.talent,
     organizer: checkingEvent.organizer,
+    gmeetLink: checkingEvent.gmeetLink,
   };
 
   const result = new Orders({
@@ -191,6 +192,10 @@ const checkoutOrder = async (req) => {
   });
 
   await result.save();
+
+  const participant = await Participant.findById(req.participant.id);
+  await invoiceMail(participant.email, result, historyEvent.gmeetLink);
+
   return result;
 };
 

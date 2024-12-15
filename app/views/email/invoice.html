@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Event Invoice</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+        .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+        .header { background-color: #f4f4f4; padding: 10px; text-align: center; }
+        .invoice-details { margin: 20px 0; }
+        .ticket-info { border: 1px solid #ddd; padding: 10px; margin-bottom: 10px; }
+        .total { text-align: right; font-weight: bold; }
+        .gmeet-link { background-color: #4285f4; color: white; padding: 10px; text-decoration: none; display: inline-block; margin: 10px 0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Event Invoice</h1>
+        </div>
+        <div class="invoice-details">
+            <h2>{{historyEvent.title}}</h2>
+            <p>Date: {{historyEvent.date}}</p>
+            <p>Venue: {{historyEvent.venueName}}</p>
+        </div>
+        
+        <div class="ticket-info">
+            <h3>Ticket Details</h3>
+            {{#orderItems}}
+            <p>
+                Ticket Type: {{ticketCategories.type}} 
+                | Quantity: {{sumTicket}} 
+                | Price per Ticket: Rp {{ticketCategories.price}}
+                | Subtotal: Rp {{subtotal}}
+            </p>
+            {{/orderItems}}
+        </div>
+        
+        <div class="total">
+            <p>Total Payment: Rp {{totalPay}}</p>
+        </div>
+        
+        <div>
+            <h3>Google Meet Link</h3>
+            <a href="{{gmeetLink}}" class="gmeet-link">Join Google Meet</a>
+        </div>
+        
+        <p>Thank you for your order!</p>
+    </div>
+</body>
+</html>

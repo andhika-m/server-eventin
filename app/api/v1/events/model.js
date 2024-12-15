@@ -78,6 +78,10 @@ const EventSchema = new mongoose.Schema(
       ref: 'Organizer',
       required: true,
     },
+    gmeetLink: {
+      type: String,
+      required: [true, 'Link Google Meet harus diisi'],
+    },
   },
   { timestamps: true }
 );

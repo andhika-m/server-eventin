@@ -58,6 +58,7 @@ const createEvents = async (req) => {
 		image,
 		category,
 		talent,
+		gmeetLink,
 	} = req.body;
 
 	// cari image, category dan talent dengan field id
@@ -84,6 +85,7 @@ const createEvents = async (req) => {
 		category,
 		talent,
 		organizer: req.user.organizer,
+		gmeetLink,
 	});
 
 	return result;
